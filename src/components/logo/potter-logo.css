@@ -1,0 +1,20 @@
+/* potter-header.css */
+.potter-header {
+    background-image: url('header-3.jpg');
+    background-size: contain;
+    color: white;
+    z-index: 1000;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Hozzáadott hézag a fejléc alatt */
+  .header-container {
+    padding-bottom: 10px;
+  }
+  
+  /* Add meg az állandó szélességet és magasságot a gomboknak */
+  .button {
+    min-width: 120px; 
+    min-height: 40px; 
+  }
+  
