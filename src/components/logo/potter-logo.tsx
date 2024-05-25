@@ -25,15 +25,21 @@ const PotterHeader: FC = () => (
           </Heading>
         </Flex>
       </Link>
-      <Flex className="button-container">
+     <Flex className="button-container">
         <Link as={NavLink} to="/login" _hover={{ textDecoration: "none" }}>
           <Button className="button" variant="ghost" colorScheme="white" mr={2} _hover={{ bg: "transparent" }}>Bejelentkezés</Button>
         </Link>
         <Link as={NavLink} to="/register" _hover={{ textDecoration: "none" }}>
           <Button className="button" variant="ghost" colorScheme="white" mr={2} _hover={{ bg: "transparent" }}>Regisztráció</Button>
         </Link>
+        <Link as={NavLink} to="/update" _hover={{ textDecoration: "none" }}>
+          <Button className="button" variant="ghost" colorScheme="white" mr={2} _hover={{ bg: "transparent" }}>Adatok módosítása</Button>
+        </Link>
+        <Link as={NavLink} to="/change-password" _hover={{ textDecoration: "none" }}>
+          <Button className="button" variant="ghost" colorScheme="white" _hover={{ bg: "transparent" }}>Jelszó változtatás</Button>
+        </Link>
       </Flex>
-    </Flex>
+      </Flex>
   </div>
 );
 

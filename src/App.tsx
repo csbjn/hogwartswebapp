@@ -6,6 +6,8 @@ import LoginForm from './components/profile/login-form';
 import RegistrationForm from './components/profile/registration-form';
 import Profile from './components/profile/profile-page-form';
 import Layout from './components/logo/layout';
+import UpdateUserForm from './components/profile/update-user-form';
+import ChangePasswordForm from './components/password/change-password-form';
 
 
 const App: React.FC = () => {
@@ -28,6 +30,8 @@ const App: React.FC = () => {
             <Route path="/register" element={<RegistrationForm />} />
             <Route path="/login" element={<LoginForm />} />
             <Route path="/profile" element={<Profile />} />
+            <Route path="/update" element={<UpdateUserForm />} />
+            <Route path="/change-password" element={<ChangePasswordForm />} />
           </Route>
         </Routes>
       </Router>

@@ -74,6 +74,12 @@ const Profile: React.FC = () => {
             <p><strong>Email:</strong> {user.email}</p>
             <p><strong>Keresztnév:</strong> {user.firstName}</p>
             <p><strong>Vezetéknév:</strong> {user.lastName}</p>
+            <Button colorScheme="blue" width="100%" onClick={handleUpdate} style={{ marginBottom: '10px' }}>
+                Adatok Módosítása
+            </Button>
+            <Button colorScheme="blue" width="100%" onClick={handleChangePassword} style={{ marginBottom: '10px' }}>
+                Jelszó Módosítása
+            </Button>
             <Button colorScheme="red" width="100%" onClick={handleLogout}>
                 Kilépés
             </Button>
