@@ -8,6 +8,9 @@ import Profile from './components/profile/profile-page-form';
 import Layout from './components/logo/layout';
 import UpdateUserForm from './components/profile/update-user-form';
 import ChangePasswordForm from './components/password/change-password-form';
+import HomePage from './components/home/home-page-form';
+import { SortingHatPage } from './components/sorting-hat/sorting-hat-page';
+import { HouseProvider } from './components/context/house-provider';
 
 
 const App: React.FC = () => {
@@ -24,17 +27,21 @@ const App: React.FC = () => {
 
   return (
     <ChakraProvider>
-      <Router>
-        <Routes>
-          <Route element={<Layout />}>
-            <Route path="/register" element={<RegistrationForm />} />
-            <Route path="/login" element={<LoginForm />} />
-            <Route path="/profile" element={<Profile />} />
-            <Route path="/update" element={<UpdateUserForm />} />
-            <Route path="/change-password" element={<ChangePasswordForm />} />
-          </Route>
-        </Routes>
-      </Router>
+      <HouseProvider>
+        <Router>
+          <Routes>
+            <Route element={<Layout />}>
+              <Route path="/" element={<HomePage />}/>
+              <Route path="/register" element={<RegistrationForm />} />
+              <Route path="/login" element={<LoginForm />} />
+              <Route path="/profile" element={<Profile />} />
+              <Route path="/update" element={<UpdateUserForm />} />
+              <Route path="/change-password" element={<ChangePasswordForm />} />
+              <Route path="/sortinghat" element={<SortingHatPage />} />
+            </Route>
+          </Routes>
+        </Router>
+      </HouseProvider>
     </ChakraProvider>
   );
 };
