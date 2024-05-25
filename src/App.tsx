@@ -11,6 +11,11 @@ import ChangePasswordForm from './components/password/change-password-form';
 import HomePage from './components/home/home-page-form';
 import { SortingHatPage } from './components/sorting-hat/sorting-hat-page';
 import { HouseProvider } from './components/context/house-provider';
+import HouseListHufflepuff from './components/House/renderer-hufflepuff';
+import HouseListSlytherin from './components/House/renderer-slytherin';
+import HouseListRavenclaw from './components/House/renderer-ravenclaw';
+import HouseListGryffindor from './components/House/renderer-gryffindor';
+import HouseMembers from './components/House/house-members';
 
 
 const App: React.FC = () => {
@@ -38,6 +43,11 @@ const App: React.FC = () => {
               <Route path="/update" element={<UpdateUserForm />} />
               <Route path="/change-password" element={<ChangePasswordForm />} />
               <Route path="/sortinghat" element={<SortingHatPage />} />
+              <Route path="/house/gryffindor" element={<HouseListGryffindor />} />
+              <Route path="/house/hufflepuff" element={<HouseListHufflepuff />} />
+              <Route path="/house/slytherin" element={<HouseListSlytherin />} />
+              <Route path="/house/ravenclaw" element={<HouseListRavenclaw />} />
+              <Route path="/houses/:houseId/members" element={<HouseMembers isLoggedIn={isLoggedIn} />} />
             </Route>
           </Routes>
         </Router>
