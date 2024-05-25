@@ -16,6 +16,8 @@ import HouseListSlytherin from './components/House/renderer-slytherin';
 import HouseListRavenclaw from './components/House/renderer-ravenclaw';
 import HouseListGryffindor from './components/House/renderer-gryffindor';
 import HouseMembers from './components/House/house-members';
+import { SearchForm } from './components/spells/services/spell-search-form';
+import { PotionSearchForm } from './components/potions/service/potion-search-form';
 
 
 const App: React.FC = () => {
@@ -48,6 +50,8 @@ const App: React.FC = () => {
               <Route path="/house/slytherin" element={<HouseListSlytherin />} />
               <Route path="/house/ravenclaw" element={<HouseListRavenclaw />} />
               <Route path="/houses/:houseId/members" element={<HouseMembers isLoggedIn={isLoggedIn} />} />
+              <Route path="/spells" element={<SearchForm/>}/>
+              <Route path="/potions" element={<PotionSearchForm />} />
             </Route>
           </Routes>
         </Router>
