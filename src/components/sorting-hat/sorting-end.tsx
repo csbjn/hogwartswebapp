@@ -13,8 +13,12 @@ export interface SortingEndProps  {
 export const SortingEnd : FC<SortingEndProps>= ({ house }) => {
 
     const navigate = useNavigate();
-    let message=`Gratulálok a ${house} házba lett beosztva`;
-
+    let message;
+    if(house === ""){
+        message="Már egy meglévő házba be lett osztva!"
+    } else{
+        message=`Gratulálok a ${house} házba lett beosztva`;
+    }
     
     const imageSelector = (): string => {
         if (house === "gryffindor") {
@@ -23,14 +27,18 @@ export const SortingEnd : FC<SortingEndProps>= ({ house }) => {
             return Hufflepuff;
         } else if (house === "ravenclaw") {
             return Ravenclaw;
+        } else if (house === "slytherin") {
+            return Slytherin;
+        } else {
+            return "None"
         }
-        return Slytherin;
     }
 
     return(<Flex alignItems="center">
         <VStack sx={{marginX:"18%"}}>
             <Text mt="24px">{message}</Text>
-            <Image src={imageSelector()} width="50%" height="50%"/>
+            { imageSelector() === "None" ? <></> : 
+                <Image src={imageSelector()} width="50%" height="50%"/>}
             <Button sx={{
                 color: "black",
                 backgroundColor: "#ff5050",

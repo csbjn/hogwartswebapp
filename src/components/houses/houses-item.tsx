@@ -19,6 +19,8 @@ export const HouseItem: FC<HouseItemProps> = ({ house }) => {
     throw new Error("MyComponent must be used within a UserProvider");
   }
   const { userHouse, setUserHouse } = context;
+
+  console.log("UserHouse: " + userHouse)
   
   const logged = (): boolean => {
     if(userHouse === "" || userHouse === undefined){

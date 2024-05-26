@@ -8,7 +8,9 @@ export const getUserData = async () =>{
         }
     });
     if(response.ok){
+        console.log(response);
         const data: User = await response.json();
+        console.log(data)
         return data.house;
     } else {
         throw new Error("There is no token");

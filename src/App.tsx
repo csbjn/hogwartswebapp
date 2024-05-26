@@ -18,6 +18,7 @@ import HouseListGryffindor from './components/House/renderer-gryffindor';
 import HouseMembers from './components/House/house-members';
 import { SearchForm } from './components/spells/services/spell-search-form';
 import { PotionSearchForm } from './components/potions/service/potion-search-form';
+import { TokenProvider } from './components/context/token-provider';
 
 
 const App: React.FC = () => {
@@ -35,6 +36,7 @@ const App: React.FC = () => {
   return (
     <ChakraProvider>
       <HouseProvider>
+      <TokenProvider>
         <Router>
           <Routes>
             <Route element={<Layout />}>
@@ -55,6 +57,7 @@ const App: React.FC = () => {
             </Route>
           </Routes>
         </Router>
+        </TokenProvider>
       </HouseProvider>
     </ChakraProvider>
   );

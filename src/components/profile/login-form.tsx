@@ -1,19 +1,27 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom'; // useLocation importálása
 import { Button, ButtonGroup } from '@chakra-ui/react';
+import { TokenContext } from '../context/token-context';
 
 const LoginForm: React.FC = () => {
     const [error, setError] = useState<string | null>(null);
     const navigate = useNavigate();
+    const location = useLocation(); // useLocation használata
+
+    const context = useContext(TokenContext);
+    if (!context) {
+        throw new Error("MyComponent must be used within a UserProvider");
+    }
+    const { authToken, setAuthToken } = context;
 
     useEffect(() => {
         const token = localStorage.getItem('token');
         if (token) {
-            navigate('/profile');
+            navigate("/profile");
         }
-    }, [navigate]);
+    }, [navigate, location]);
 
     const validationSchema = Yup.object({
         username: Yup.string().email('Érvénytelen email cím').required('Kötelező mező'),
@@ -44,7 +52,8 @@ const LoginForm: React.FC = () => {
                 if (response.ok) {
                     const data = await response.json();
                     localStorage.setItem('token', data.accessToken);
-                    navigate('/profile');
+                    setAuthToken(data.accessToken);
+                    navigate('/');
                 } else {
                     const errorData = await response.json();
                     switch (response.status) {

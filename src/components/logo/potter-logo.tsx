@@ -1,14 +1,29 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC, useContext, useEffect, useState } from 'react';
 import { Link as NavLink } from 'react-router-dom';
 import { Heading, Link, Button, Flex } from '@chakra-ui/react';
 import './potter-logo.css'; // CSS fájl importálása
+import { TokenContext } from '../context/token-context';
+import { HouseContext } from '../context/house-context';
 
 const PotterHeader: FC = () =>  {
-  const [authToken, setAuthToken] = useState<string | null>(null);
+  //const [authToken, setAuthToken] = useState<string | null>(null);
+
+  const context = useContext(TokenContext);
+  if (!context) {
+      throw new Error("MyComponent must be used within a UserProvider");
+  }
+  const { authToken, setAuthToken } = context;
+
+  const houseContext = useContext(HouseContext);
+  if (!houseContext) {
+    throw new Error("MyComponent must be used within a UserProvider");
+  }
+  const { userHouse, setUserHouse } = houseContext;
+
+  console.log(userHouse);
 
   useEffect(() => {
     const token = localStorage.getItem('token');
-    setAuthToken(token);
   }, []);
 
   return (
@@ -34,7 +49,7 @@ const PotterHeader: FC = () =>  {
           </Flex>
         </Link>
         <Flex className="button-container">
-          {!authToken ? (
+          {authToken === "" ? (
             <>
              <Link as={NavLink} to="/login" _hover={{ textDecoration: "none" }}>
                 <Button className="button" variant="ghost" colorScheme="white" mr={2} _hover={{ bg: "transparent" }}>Bejelentkezés</Button>
@@ -63,6 +78,9 @@ const PotterHeader: FC = () =>  {
               <Link as={NavLink} to="/potions" _hover={{ textDecoration: "none" }}>
                 <Button className="button" variant="ghost" colorScheme="white" _hover={{ bg: "transparent" }}> Bájitalok </Button>
               </Link>
+              { userHouse === "None" ? <Link as={NavLink} to="/sortinghat" _hover={{ textDecoration: "none" }}>
+                <Button className="button" variant="ghost" colorScheme="white" _hover={{ bg: "transparent" }}> Süveg </Button>
+              </Link> : <></>}
             </>
           )}
         </Flex>

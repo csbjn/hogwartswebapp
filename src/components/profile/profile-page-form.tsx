@@ -1,6 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '@chakra-ui/react';
+import { TokenContext } from '../context/token-context';
+import { HouseContext } from '../context/house-context';
 
 interface User {
     email: string;
@@ -13,6 +15,18 @@ const Profile: React.FC = () => {
     const [user, setUser] = useState<User | null>(null);
     const [error, setError] = useState<string | null>(null);
     const navigate = useNavigate();
+
+    const context = useContext(TokenContext);
+    if (!context) {
+      throw new Error("MyComponent must be used within a UserProvider");
+    }
+    const { authToken, setAuthToken } = context;
+
+    const houseContext = useContext(HouseContext);
+    if (!houseContext) {
+        throw new Error("MyComponent must be used within a UserProvider");
+    }
+    const { userHouse, setUserHouse } = houseContext;
 
     useEffect(() => {
         const fetchUserData = async () => {
@@ -34,6 +48,7 @@ const Profile: React.FC = () => {
                     const data: User = await response.json();
                     setUser(data);
                 } else {
+                    console.log("ide");
                     localStorage.removeItem('token');
                     navigate('/login');
                 }
@@ -50,6 +65,8 @@ const Profile: React.FC = () => {
     const handleLogout = () => {
         localStorage.removeItem('token');
         navigate('/login');
+        setAuthToken("");
+        setUserHouse("");
     };
 
     const handleUpdate = () => {

@@ -35,9 +35,7 @@ const HomePage = () => {
         <VStack>
             <HouseList/>
             { isLogged 
-                ? <>
-                    { userHouse === "None" ? <Button mt="24px"  sx={{ backgroundColor: "red"}}onClick={() =>{navigate('/sortinghat')}}>Ház Beosztás</Button> : <></> }
-                </>
+                ? <></>
                 : <LoginForm/>}
         </VStack>
     </Box>  
