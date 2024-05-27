@@ -1,4 +1,3 @@
-// src/App.tsx
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { ChakraProvider } from '@chakra-ui/react';
@@ -11,14 +10,11 @@ import ChangePasswordForm from './components/password/change-password-form';
 import HomePage from './components/home/home-page-form';
 import { SortingHatPage } from './components/sorting-hat/sorting-hat-page';
 import { HouseProvider } from './components/context/house-provider';
-import HouseListHufflepuff from './components/House/renderer-hufflepuff';
-import HouseListSlytherin from './components/House/renderer-slytherin';
-import HouseListRavenclaw from './components/House/renderer-ravenclaw';
-import HouseListGryffindor from './components/House/renderer-gryffindor';
-import HouseMembers from './components/House/house-members';
 import { SearchForm } from './components/spells/services/spell-search-form';
 import { PotionSearchForm } from './components/potions/service/potion-search-form';
 import { TokenProvider } from './components/context/token-provider';
+import HouseDetails from './components/House/housedetails';
+import HouseMembers from './components/House/housemembers';
 
 
 const App: React.FC = () => {
@@ -47,13 +43,10 @@ const App: React.FC = () => {
               <Route path="/update" element={<UpdateUserForm />} />
               <Route path="/change-password" element={<ChangePasswordForm />} />
               <Route path="/sortinghat" element={<SortingHatPage />} />
-              <Route path="/house/gryffindor" element={<HouseListGryffindor />} />
-              <Route path="/house/hufflepuff" element={<HouseListHufflepuff />} />
-              <Route path="/house/slytherin" element={<HouseListSlytherin />} />
-              <Route path="/house/ravenclaw" element={<HouseListRavenclaw />} />
-              <Route path="/houses/:houseId/members" element={<HouseMembers isLoggedIn={isLoggedIn} />} />
               <Route path="/spells" element={<SearchForm/>}/>
               <Route path="/potions" element={<PotionSearchForm />} />
+              <Route path="/houses/:houseId" element={<HouseDetails />} />
+              <Route path="/houses/:houseId/members" element={<HouseMembers />} />
             </Route>
           </Routes>
         </Router>
